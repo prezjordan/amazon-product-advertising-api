@@ -13,6 +13,8 @@ module AmazonProductAdvertisingApi #:nodoc:
     cattr_accessor :access_key_id
 
     cattr_accessor :secret_access_key
+
+    cattr_accessor :response_group
     
     cattr_accessor :associate_ids
     @@associate_ids = Struct.new(:ca, :de, :fr, :jp, :uk, :us).new

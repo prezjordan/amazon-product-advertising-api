@@ -51,7 +51,8 @@ module AmazonProductAdvertisingApi #:nodoc:
         
         API_VERSION = "2009-03-31"
     
-        def initialize
+        # hacky :(
+        def initialize(arg1, arg2)
           self.response = AmazonProductAdvertisingApi::Operations::Base::Element.new
           self.errors   = []
         end
@@ -67,6 +68,8 @@ module AmazonProductAdvertisingApi #:nodoc:
           request_params["Operation"]        = self.operation
           request_params["AssociateTag"]     = AmazonProductAdvertisingApi::Base.associate_ids.send(self.region) unless AmazonProductAdvertisingApi::Base.associate_ids.send(self.region).nil?
           request_params["Version"]          = API_VERSION
+          request_params["ResponseGroup"]    = AmazonProductAdvertisingApi::Base.response_group.try(:join, ',')
+
           request_params.merge!(params)
 
           # Process all params - make sure they're all strings, camelize and escape (where appropriate)
